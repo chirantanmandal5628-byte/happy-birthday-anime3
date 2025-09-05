@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday ANIME 💖</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Comic Sans MS", cursive, sans-serif;
+      background: linear-gradient(to bottom right, #ffe4e6, #fbcfe8, #ddd6fe);
+      text-align: center;
+      overflow: hidden;
+    }
+    h1 {
+      font-size: 3rem;
+      color: #db2777;
+      margin-top: 40px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+      animation: bounce 1s infinite;
+    }
+    .cake {
+      font-size: 5rem;
+      margin: 20px 0;
+    }
+    .typewriter {
+      font-size: 1.5rem;
+      color: #374151;
+      margin: 20px;
+      border-right: 3px solid #db2777;
+      white-space: nowrap;
+      overflow: hidden;
+      width: 0;
+      animation: typing 4s steps(40, end) forwards, blink 0.7s infinite;
+    }
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+    .music-btn {
+      background: #8b5cf6;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 9999px;
+      cursor: pointer;
+      border: none;
+      font-size: 1rem;
+      transition: background 0.3s;
+    }
+    .music-btn:hover {
+      background: #7c3aed;
+    }
+    .popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      background: white;
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+      text-align: center;
+      max-width: 300px;
+      transition: transform 0.5s ease;
+    }
+    .popup.show {
+      transform: translate(-50%, -50%) scale(1);
+    }
+    .popup button {
+      margin-top: 10px;
+      background: #f472b6;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    /* Floating hearts */
+    .heart {
+      position: fixed;
+      bottom: -20px;
+      color: #db2777;
+      font-size: 20px;
+      animation: float 5s linear infinite;
+      white-space: nowrap;
+    }
+    @keyframes float {
+      from { transform: translateY(0) rotate(0deg); opacity: 1; }
+      to { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
+    }
+    /* Bouncing animation */
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+  </style>
+</head>
+<body>
+  <h1>🎉 Happy Birthday, ANIME! 🎉</h1>
+  <div class="cake">🎂</div>
+  <p class="typewriter">You make my world brighter every single day 💖</p>
+
+  <!-- Music -->
+  <button class="music-btn" id="musicBtn">Play Music 🎶</button>
+  <audio id="bgMusic" loop>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
+  </audio>
+
+  <!-- Popup -->
+  <div class="popup" id="popup">
+    <h2>💌 Surprise!</h2>
+    <p>ANIME, you are the most special person in my life 🌸<br>
+    I’m so lucky to have you 💕<br>
+    Happy Birthday, ANIME! 🥰</p>
+    <button onclick="closePopup()">Close</button>
+  </div>
+
+  <script>
+    // Floating hearts (some will show ANIME)
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.textContent = Math.random() > 0.6 ? "❤️ ANIME" : "❤️";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = Math.random() * 20 + 10 + "px";
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 5000);
+    }
+    setInterval(createHeart, 500);
+
+    // Music toggle
+    const musicBtn = document.getElementById("musicBtn");
+    const bgMusic = document.getElementById("bgMusic");
+    let playing = false;
+
+    musicBtn.addEventListener("click", () => {
+      if (!playing) {
+        bgMusic.play();
+        musicBtn.textContent = "Pause Music ⏸️";
+        setTimeout(showPopup, 3000); // Show popup after music starts
+      } else {
+        bgMusic.pause();
+        musicBtn.textContent = "Play Music 🎶";
+      }
+      playing = !playing;
+    });
+
+    // Popup
+    const popup = document.getElementById("popup");
+    function showPopup() {
+      popup.classList.add("show");
+    }
+    function closePopup() {
+      popup.classList.remove("show");
+    }
+  </script>
+</body>
+</html>
